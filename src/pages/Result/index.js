@@ -7,16 +7,25 @@ class Result extends Component {
     super();
 
     this.state = {
-      user: {}     
+      user: {}
     };
   }
-  render() {
-    const { user} = this.state;
 
+  componentDidMount = async () => {
+    console.log("O componente foi montado")
+    const { location } = this.props;  //PRECISAAAA COLOCAR ISSO, OU VAI QUEBRAR
+    await this.setState({ user: this.props.history.location.state });
+    console.log(this.props.history.location.state)
+    console.log(this.state.user)
+  };
+
+  render() {
+    const { user } = this.state;
+    console.log(user) //printa {}
     return (
-      <main className="result--container">
+      <main >
         <div className="content">
-          <h1>Oi</h1>
+          <h1>OI </h1>
         </div>
       </main>
     );

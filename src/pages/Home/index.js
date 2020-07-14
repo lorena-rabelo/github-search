@@ -15,7 +15,9 @@ class Home extends Component {
 
   onChange = e => {
     const value = e.target.value;
-    this.setState({ user: value });
+    this.setState({ 
+      user: value
+    });
     console.log('chamou onChange', value)
   };
 
@@ -25,20 +27,15 @@ class Home extends Component {
     console.log('chamou onClick', error)
     user
     ? await Api.getUser(user)
-        .then(res =>
-          this.props.history.push({
-            pathname: "/result",
-            state: {
-              res
-            }
-          })
-        )
+    .then(res =>
+      this.props.history.push({
+        pathname: "/result",
+        state: { res } }))    //Precisa ser a resposta da requisição da API
         .catch(error =>
           this.setState({ error: "Nenhum usuário encontrado!", user: "" })
-        )
-    : this.setState({ error: "Por favor, insira usuário!" });
-}
-
+          )
+          : this.setState({ error: "Por favor, insira usuário!" });
+        }
   render() {
     const { user, error } = this.state;
     return (
