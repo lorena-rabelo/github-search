@@ -1,0 +1,24 @@
+h1 {
+  font-size: 42px;
+}
+
+input {
+  height: 40px;
+  width: 350px;
+  padding-left: 15px;
+  border: 2px solid #5664FC;
+  border-right: none;
+  background-color:  #CDF564;
+}
+
+input:focus {
+color: #313131
+}
+
+button {
+  height: 46px;
+  width: 100px;
+  background-color: #5664FC;
+  border: none;
+  color:white;
+}

@@ -1,4 +1,5 @@
 import React from 'react'
+import './styles.css'
 
 const Profile = ({
   url,
@@ -10,14 +11,14 @@ const Profile = ({
   following
 }) => {
   return (
-    <div className="perfil__container">
-      <img src={url} alt={`${name} user`}></img>
+    <div className="profile__container">
+      <img src={url} alt={`${name} user`} className="profile__img"></img>
       <h2>{name} </h2>
       <p>{bio}</p>
       <p>{location}</p>
-      <p>{public_repos}</p>
-      <p>{followers}</p>
-      <p>{following}</p>
+      <p>{public_repos} Repositórios</p>
+      <p>{followers} Seguidores</p>
+      <p>{following} Seguindo</p>
     </div>
   )
 

@@ -32,7 +32,8 @@ class Result extends Component {
     const { user, repos } = this.state;
     console.log(user.avatar_url)
     return (
-      <main >
+      <main>
+        <h1>Repositório</h1>
         <div className="content">
           <Profile
             url={user.avatar_url}
@@ -43,10 +44,8 @@ class Result extends Component {
             followers={user.followers}
             following={user.following}
           />
-         <Repositories 
-         repos={repos}/>
-
-
+          <Repositories
+            repos={repos} />
         </div>
       </main>
     );
