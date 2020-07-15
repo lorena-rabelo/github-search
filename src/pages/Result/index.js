@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import Api from "../../api/service"
+import Profile from '../../components/Profile'
+import Repositories from '../../components/Repos'
+
 import "./styles.css";
 
 class Result extends Component {
@@ -7,37 +10,43 @@ class Result extends Component {
     super();
 
     this.state = {
-      user: {}
+      user: {},
+      repos: []
     };
   }
 
   componentDidMount = async () => {
     console.log("O componente foi montado")
     const { location } = this.props; //PRECISAAAA COLOCAR ISSO, OU VAI QUEBRAR
-    const user = location.state.res; 
+    const user = location.state.res;
+    const repos = await Api.getRepos(user.login);
     console.log(user)
-    await this.setState({ user });
+    console.log(repos)
+    this.setState({ user, repos });
     console.log(this.state.user)
+    console.log(this.state.repos)
     console.log(this.props.history.location.state)
   };
 
   render() {
-    const { user } = this.state;
-    console.log(user.avatar_url) //printa {}    
+    const { user, repos } = this.state;
+    console.log(user.avatar_url)
     return (
       <main >
         <div className="content">
-          <h1>{user.name} </h1>
+          <Profile
+            url={user.avatar_url}
+            name={user.name}
+            bio={user.bio}
+            location={user.location}
+            public_repos={user.public_repos}
+            followers={user.followers}
+            following={user.following}
+          />
+         <Repositories 
+         repos={repos}/>
 
-          <div className="perfil__container">
-            <img src={user.avatar_url} alt="foto de perfil"></img>
-            <h3>{user.name} </h3>           
-            <p>{user.bio}</p>
-            <p>{user.location}</p>
-            <p>{user.public_repos}</p>
-            <p>{user.followers}</p>
-            <p>{user.following}</p>      
-          </div>
+
         </div>
       </main>
     );
